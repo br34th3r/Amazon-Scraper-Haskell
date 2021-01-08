@@ -8,4 +8,8 @@ import System.Environment
 import Text.HTML.Scalpel
 
 main :: IO ()
-main = xboxScraper "https://www.amazon.co.uk/Xbox-RRT-00007-Series-X/dp/B08H93GKNJ"
+main = do
+  args <- getArgs
+  if null args || length args > 1
+    then putStrLn "ERROR: No URL Supplied!"
+    else mapM_ xboxScraper args
